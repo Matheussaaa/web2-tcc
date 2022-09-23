@@ -34,7 +34,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item dropdown ps-2">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-menu-up" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-menu-up" viewBox="0 0 16 16">
                                 <path d="M7.646 15.854a.5.5 0 0 0 .708 0L10.207 14H14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3.793l1.853 1.854zM1 9V6h14v3H1zm14 1v2a1 1 0 0 1-1 1h-3.793a1 1 0 0 0-.707.293l-1.5 1.5-1.5-1.5A1 1 0 0 0 5.793 13H2a1 1 0 0 1-1-1v-2h14zm0-5H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2zM2 11.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 0-1h-8a.5.5 0 0 0-.5.5zm0-4a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 0-1h-11a.5.5 0 0 0-.5.5zm0-4a.5.5 0 0 0 .5.5h6a.5.5 0 0 0 0-1h-6a.5.5 0 0 0-.5.5z" />
                             </svg>
                             <span class="ps-1 text-white">Organização</span>
@@ -51,10 +51,10 @@
                         <form method="POST" action="{{ route('logout') }}" id="form">
                             @csrf
                             <a nohref style="cursor:pointer" class="nav-link" onclick="document.getElementById('form').submit()">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-door-open" viewBox="0 0 16 16">
-                                <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z" />
-                                <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5zM4 1.934V15h6V1.077l-6 .857z" />
-                            </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-door-open" viewBox="0 0 16 16">
+                                    <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z" />
+                                    <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5zM4 1.934V15h6V1.077l-6 .857z" />
+                                </svg>
                                 <span class="ps-1 text-white">Sair</span>
                             </a>
                         </form>
@@ -68,16 +68,6 @@
             <div class="col">
                 <h3 class="display-7 text-secondary d-none d-md-block"><b>Vent Web</b></h3>
             </div>
-            @if(isset($rota) && UserPermission::isAuthorized('alunos.create'))
-                    <div class="col d-flex justify-content-end">
-                        <a href= "{{ route($rota) }}" class="btn btn-secondary">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FFF" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
-                            </svg>
-                        </a>
-                    </div>
-                @endif
-
         </div>
         <hr>
         @yield('conteudo')
@@ -150,18 +140,22 @@
         }
         $("#infoModal").modal('show');
     }
+
     function closeInfoModal() {
         $("#infoModal").modal('hide');
     }
+
     function showRemoveModal(id, nome) {
         $('#id_remove').val(id);
         $('#removeModal').modal().find('.modal-body').html("");
         $('#removeModal').modal().find('.modal-body').append("Deseja remover o registro <b class='text-danger'>'" + nome + "'</b> ?");
         $("#removeModal").modal('show');
     }
+
     function closeRemoveModal() {
         $("#removeModal").modal('hide');
     }
+
     function remove() {
         let id = $('#id_remove').val();
         let form = "form_" + $('#id_remove').val();
