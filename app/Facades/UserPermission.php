@@ -10,8 +10,8 @@ class UserPermission
     public static function loadPermissions($user_type)
     {   
         
-        $sess = Array();
-        $perm = Permission::with('resource')->where('role_id', $user_type)->get();
+        $sess = array();
+        $perm = Permission::with(['resource'])->where('role_id', $user_type)->get();
 
         foreach ($perm as $item) {
 
