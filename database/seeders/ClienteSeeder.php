@@ -13,6 +13,6 @@ class ClienteSeeder extends Seeder
      */
     public function run()
     {
-        //
+        
     }
 }

@@ -1,4 +1,4 @@
-@extends('templates/middleware')
+@extends('templates/middleware', ['titulo' => "PACIENTES", 'rota' => "clientes.create"])
 
 @section('conteudo')
 
@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col">
+                <div class="col-md-6">
                     <div class="form-floating mb-3">
                         <input type="number" class="form-control @if($errors->has('idade')) is-invalid @endif" name="idade" placeholder="idade" value="{{old('idade')}}" />
                         <label for="nome">Idade Paciente</label>
@@ -32,9 +32,7 @@
                         @endif
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col">
+                <div class="col-md-6">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control @if($errors->has('sexo')) is-invalid @endif" name="sexo" placeholder="sexo" value="{{old('sexo')}}" />
                         <label for="nome">Sexo do Paciente</label>
@@ -47,7 +45,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col">
+                <div class="col-md-6">
                     <div class="form-floating mb-3">
                         <input type="date" class="form-control @if($errors->has('dataInternamento')) is-invalid @endif" name="dataInternamento" placeholder="dataInternamento" value="{{old('dataInternamento')}}" />
                         <label for="dataInternamento">Data internamento</label>
@@ -58,8 +56,7 @@
                         @endif
                     </div>
                 </div>
-            </div> <div class="row">
-                <div class="col">
+                <div class="col-md-6">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control @if($errors->has('diagnosticoInt')) is-invalid @endif" name="diagnosticoInt" placeholder="diagnosticoInt" value="{{old('diagnosticoInt')}}" />
                         <label for="diagnosticoInt">Diagnostico Interno</label>
@@ -72,7 +69,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col">
+                <div class="col-md-6">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control @if($errors->has('diagnosticoClin')) is-invalid @endif" name="diagnosticoClin" placeholder="diagnosticoClin" value="{{old('diagnosticoClin')}}" />
                         <label for="diagnosticoClin">Diagnostico Clinico</label>
@@ -83,9 +80,7 @@
                         @endif
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col">
+                <div class="col-md-6">
                     <div class="form-floating mb-3">
                         <input type="date" class="form-control @if($errors->has('dataIOT')) is-invalid @endif" name="dataIOT" placeholder="dataIOT" value="{{old('dataIOT')}}" />
                         <label for="dataIOT">Data IOT</label>
@@ -98,7 +93,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col">
+                <div class="col-md-6">
                     <div class="form-floating mb-3">
                         <input type="number" class="form-control @if($errors->has('altura')) is-invalid @endif" name="altura" placeholder="altura" value="{{old('altura')}}" />
                         <label for="altura">Altura do Paciente</label>
@@ -109,9 +104,7 @@
                         @endif
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col">
+                <div class="col-md-6">
                     <div class="form-floating mb-3">
                         <input type="number" class="form-control @if($errors->has('pesoIdeal')) is-invalid @endif" name="pesoIdeal" placeholder="pesoIdeal" value="{{old('pesoIdeal')}}" />
                         <label for="pesoIdeal">Peso Ideal</label>
@@ -149,7 +142,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
                             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
                         </svg>
-                </button>
+                    </button>
                 </div>
             </div>
         </div>

@@ -5,15 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use App\Http\Requests\StoreClienteRequest;
 use App\Http\Requests\UpdateClienteRequest;
+use Illuminate\Http\Request;
+use App\Facades\UserPermission;
 
 class ClienteController extends Controller
 {
-    
+
+    public function __construct()
+    {
+        $this->authorizeResource(Cliente::class, 'cliente');
+    }
+
     public function index()
     {
-        $data = Cliente::all();
+        $this->authorize('viewAny',  Cliente::class);
 
-        return view('clientes.index', compact(['data']));
+        $clientes = Cliente::all();
+
+        return view('clientes.index', compact(['clientes']));
     }
 
     public function validation(Request $request)
@@ -21,13 +30,13 @@ class ClienteController extends Controller
 
         $rules = [
             'nome' => 'required|max:100|min:10',
-            'idade'=>'required',
-            'sexo'=>'required',
-            'dataInter'=>'required',
-            'diagnosticoClin'=>'required',
-            'dataIOT'=>'required',
-            'dataInter'=>'required',
-            
+            'idade' => 'required',
+            'sexo' => 'required',
+            'dataInter' => 'required',
+            'diagnosticoClin' => 'required',
+            'dataIOT' => 'required',
+            'dataInter' => 'required',
+
         ];
         $msgs = [
             "required" => "O preenchimento do campo [:attribute] é obrigatório!",
@@ -37,24 +46,31 @@ class ClienteController extends Controller
 
         $request->validate($rules, $msgs);
     }
-    
+
     public function create()
-    {   
-        return view('alunos.create');
+    {
+        $this->authorize('create',  Cliente::class);
+
+        return view('clientes.create');
+    }
+
+    public function show($id)
+    {
+
         
     }
 
-    
     public function store(Request $request)
     {
-        self::validation($request);
+        $this->authorize('create',  Cliente::class);
+        // self::validation($request);
 
         $obj = new Cliente();
         $obj->nome = mb_strtoupper($request->nome, 'UTF-8');
         $obj->idade = $request->idade;
         $obj->sexo = $request->sexo;
-        $obj->dataInter = $request->dataInter;
-        $obj->diagnosticoInter = $request->diagnosticoInter;
+        $obj->dataInter = $request->dataInternamento;
+        $obj->diagnosticoInter = $request->diagnosticoInt;
         $obj->diagnosticoClin = $request->diagnosticoClin;
         $obj->dataIOT = $request->dataIOT;
         $obj->altura = $request->altura;
@@ -65,46 +81,53 @@ class ClienteController extends Controller
         return redirect()->route('clientes.index');
     }
 
-  
-   
 
-  
+
+
+
     public function edit(Cliente $cliente)
     {
+        $this->authorize('update', $cliente);
+
         if (isset($cliente)) {
             return view('clientes.edit', compact('cliente'));
         }
 
         return "<h1>Clientes não Encontrado!</h1>";
-    
     }
 
-  
-    public function update(UpdateClienteRequest $request, Cliente $cliente)
+
+    public function update(Request $request, Cliente $cliente)
     {
-        self::validation($request);
+        //self::validation($request);
+
+        $this->authorize('update', $cliente);
 
         if (isset($cliente)) {
             $cliente->nome = mb_strtoupper($request->nome, 'UTF-8');
-            $obj->idade = $request->idade;
-            $obj->sexo = $request->sexo;
-            $obj->dataInter = $request->dataInter;
-            $obj->diagnosticoInter = $request->diagnosticoInter;
-            $obj->diagnosticoClin = $request->diagnosticoClin;
-            $obj->dataIOT = $request->dataIOT;
-            $obj->altura = $request->altura;
-            $obj->pesoIdeal = $request->pesoIdeal;
-            $obj->diasInter = $request->diasInter;
+            $cliente->idade = $request->idade;
+            $cliente->sexo = $request->sexo;
+            $cliente->dataInter = $request->dataInternamento;
+            $cliente->diagnosticoInter = $request->diagnosticoInt;
+            $cliente->diagnosticoClin = $request->diagnosticoClin;
+            $cliente->dataIOT = $request->dataIOT;
+            $cliente->altura = $request->altura;
+            $cliente->pesoIdeal = $request->pesoIdeal;
+            $cliente->diasInter = $request->diasInter;
+
             $cliente->save();
+
             return redirect()->route('clientes.index');
         }
 
         return "<h1>Cliente não Encontrado!</h1>";
     }
-    
-   
+
+
     public function destroy(Cliente $cliente)
     {
+        $this->authorize('delete', $cliente);
+
         if (isset($cliente)) {
             $cliente->delete();
             return redirect()->route('clientes.index');
@@ -112,5 +135,4 @@ class ClienteController extends Controller
 
         return "<h1>Cliente não Encontrado!</h1>";
     }
-    
 }

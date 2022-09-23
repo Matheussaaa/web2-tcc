@@ -18,10 +18,22 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('templates.middleware');
 })->middleware(['auth'])->name('dashboard');
 
-Route::resource('/clientes', '\App\Http\Controllers\ClienteController')->middleware(['auth']);
+Route::resource('/clientes', '\App\Http\Controllers\ClienteController')
+    ->middleware(['auth']);
 
-require __DIR__.'/auth.php';
+Route::resource('/vents', '\App\Http\Controllers\VentiladorMecController')
+    ->middleware(['auth']);
 
+Route::resource('/status', '\App\Http\Controllers\StatusClinicoController')
+    ->middleware(['auth']);
+
+Route::resource('/parametros', '\App\Http\Controllers\ParametrosAtingidosController')
+    ->middleware(['auth']);
+
+Route::resource('/higienes', '\App\Http\Controllers\HigieneParenquimaController')
+    ->middleware(['auth']);
+
+require __DIR__ . '/auth.php';

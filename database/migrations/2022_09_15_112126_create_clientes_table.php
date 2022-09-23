@@ -15,7 +15,19 @@ class CreateClientesTable extends Migration
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->id();
+            $table->string('nome');
+            $table->integer('idade');
+            $table->string('sexo');
+            $table->date('dataInter');
+            $table->string('diagnosticoInter');
+            $table->string('diagnosticoClin');
+            $table->date('dataIOT');
+            $table->float('altura');
+            $table->float('pesoIdeal');
+            $table->integer('diasInter');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 
